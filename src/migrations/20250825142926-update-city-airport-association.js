@@ -11,17 +11,14 @@ module.exports = {
         table: "Cities",
         field: "id",
       },
-      onUpdate: "CASCADE",
-      onDELETE: "CASCADE",
+      onDelete: "CASCADE",
     });
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.removeConstraint(
+      "Airports",
+      "airports_fkey_constrant"
+    );
   },
 };
